@@ -6,7 +6,7 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
-    @pins = Pin.all.order("created_at DESC").paginate(:page => params[:pages], :per_page => 3)
+    @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
   end
 
   # GET /pins/1
@@ -71,7 +71,7 @@ class PinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:description, :image)
+      params.require(:pin).permit(:description, :image, :name)
     end
 
     def correct_user

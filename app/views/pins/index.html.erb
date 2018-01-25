@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <div id="pins" class="transitions-enabled">
     <% @pins.each do |pin| %>
     <div class="box">
@@ -6,17 +5,19 @@
         <%= link_to image_tag(pin.image.url(:medium)), pin %><br>
       <div class="panel-body">
         <%= pin.description %><br>
+        <br/><strong><%= pin.user.name if pin.user %></strong><br/>
       </div>
-        <% if pin.user == current_user %>
+      <% if pin.user == current_user %>
         <div class="panel-footer">
-          <%= link_to 'Edit', edit_pin_path(pin) %><br>
-          <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+          <%= link_to 'Edytuj', edit_pin_path(pin) %><br>
+          <%= link_to 'Usuń', pin, method: :delete, data: { confirm: 'Jesteś pewien?' } %>
         </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
-    <% end %>
+  </div>
+  <%end%>
 </div>
+
 <div class="center">
   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
 </div>
